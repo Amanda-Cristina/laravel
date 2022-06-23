@@ -58,38 +58,7 @@ class Client extends Model
     }
 
 
-    public function validatesParameters($object){
-        $errors=array();
-        //formrequest
-        $this->validator = Validation::createValidatorBuilder()
-                    ->enableAnnotationMapping(true)
-                    ->addDefaultDoctrineAnnotationReader()
-                    ->getValidator();
-
-
-        $errors_form = $this -> validator->validate($object);
-      
-        if (!empty($errors_form[0])){
-            array_push($errors, $this->get_violations($errors_form));
-            return $errors;
-        }
-       
-            
-        return $errors;
-        
-    }
-
-
-    function get_violations(ConstraintViolationList $violations) {
-        //$out = 'violation count: ' . count($violations);
-        $out = array();
-        foreach($violations as $v) {  
-            
-            array_push($out,$v->getMessage());
-        }
-
-        return $out;
-    }
+    
 
     
 
